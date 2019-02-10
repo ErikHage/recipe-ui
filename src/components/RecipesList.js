@@ -20,7 +20,7 @@ class RecipesList extends Component {
     this.fetchAllRecipes();
   }
 
-  async fetchAllRecipes(page, beers) {
+  async fetchAllRecipes() {
     await recipesService
       .getRecipes()
       .then(recipes => {
