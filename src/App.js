@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import { connect } from 'react-redux';
 import { defaultFunction } from './actions';
+import RecipesList from './components/RecipesList';
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        React Redux Starter Template
+        <RecipesList/>
       </div>
     );
   }
