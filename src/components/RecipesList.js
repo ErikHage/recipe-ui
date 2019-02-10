@@ -1,20 +1,45 @@
 // basic react component starting template
 import React, { Component } from 'react';
-import recipe1 from '../test-data/vodka-sauce-recipe.json';
 
-const recipes = [
-  recipe1,
-  {
-    name: 'some-name-2',
-  },
-];
+import recipesService from '../services/recipes';
+
+// TODO use actions and reducers instead
+const defaultRecipesContext = {
+  recipes: [],
+  isFetching: true,
+  errorFetching: null,
+};
 
 class RecipesList extends Component {
+  constructor(props) {
+    super(props)
+    this.state = defaultRecipesContext
+  }
+
+  componentDidMount() {
+    this.fetchAllRecipes();
+  }
+
+  async fetchAllRecipes(page, beers) {
+    await recipesService
+      .getRecipes()
+      .then(recipes => {
+        this.setState({
+          recipes,
+          isFetching: false
+        });
+      })
+      .catch(error => this.setState({
+        errorFetching: error, 
+        isFetching: false
+      }));
+  }
+
   render() {
     return (
       <div>
-        {recipes.map((recipe, index) => 
-          <p>{recipe.name}</p>
+        {this.state.recipes.map((recipe, index) => 
+          <p>{recipe.name} : {recipe.url}</p>
         )}
       </div>
     );
