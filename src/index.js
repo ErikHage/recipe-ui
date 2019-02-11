@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
-
+import ReduxPromise from 'redux-promise';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import logger from 'redux-logger';
+
+import App from './components/App';
+
+import './index.css';
+// import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
-import ReduxPromise from 'redux-promise';
 
 const store = createStore(
   reducers,
@@ -17,8 +19,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-      <App />
-  </Provider>
-  , document.getElementById('root')
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+  </Provider>, document.getElementById('root')
 );
 // registerServiceWorker();

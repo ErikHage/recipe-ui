@@ -15,7 +15,7 @@ const parseNameFromFileName = (filename) => {
 
 const fromResponse = (rawData) => ({
   name: parseNameFromFileName(rawData.name),
-  url: rawData.url,
+  filename: rawData.name,
 });
 
 const getRecipes = async () => {
@@ -26,6 +26,21 @@ const getRecipes = async () => {
   return res.body.map(fromResponse);
 };
 
+const decodeContent = (body) => {
+  const { content, encoding } = body;  
+  const buff = new Buffer(content, encoding);  
+  return buff.toString();
+};
+
+const getRecipe = async (filename) => {
+  const { body } = await request
+  .get(`http://api.github.com/repos/ErikHage/my-recipes/contents/json/${filename}?ref=master`)
+  .accept('application/json');
+
+  return JSON.parse(decodeContent(body));
+};
+
 export default {
   getRecipes,
+  getRecipe,
 };

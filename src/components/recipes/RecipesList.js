@@ -1,9 +1,9 @@
-// basic react component starting template
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import recipesService from '../services/recipes';
+import recipesService from '../../services/recipes';
 
-// TODO use actions and reducers instead
+// TODO use actions and reducers instead of this fetch
 const defaultRecipesContext = {
   recipes: [],
   isFetching: true,
@@ -12,8 +12,8 @@ const defaultRecipesContext = {
 
 class RecipesList extends Component {
   constructor(props) {
-    super(props)
-    this.state = defaultRecipesContext
+    super(props);
+    this.state = defaultRecipesContext;
   }
 
   componentDidMount() {
@@ -39,7 +39,7 @@ class RecipesList extends Component {
     return (
       <div>
         {this.state.recipes.map((recipe, index) => 
-          <p>{recipe.name} : {recipe.url}</p>
+          <Link key={index} to={"/recipe/" + recipe.filename}>{recipe.name}</Link>
         )}
       </div>
     );

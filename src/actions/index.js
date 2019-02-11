@@ -1,5 +1,3 @@
-import recipesService from '../services/recipes';
-
 export const FETCH_DATA = 'fetch_data';
 
 // default function to display redux action format
