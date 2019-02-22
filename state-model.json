@@ -1,0 +1,45 @@
+{
+  "recipes": {
+    "files": [
+      {
+        "name": "normalized name of the recipe",
+        "filename": "name of the github file location of the recipe"
+      }
+    ],
+    "selected": {
+      "recipeId": "unique id for the recipe",
+      "name": "String",
+      "prep": {
+        "kind": "String",
+        "value": "Number"
+      },
+      "cook": {
+        "kind": "String",
+        "value": "Number"
+      },
+      "yield": {
+        "kind": "String",
+        "value": "Number"
+      },
+      "ingredients": [
+        {
+          "name": "String",
+          "quantity": {
+            "kind": "String",
+            "value": "Number"
+          },
+          "notes": "String"
+        }
+      ],
+      "steps": [
+        {
+          "id": "Integer",
+          "text": "String"
+        }
+      ],
+      "keywords": [
+        "Strings"
+      ]
+    }
+  }
+}

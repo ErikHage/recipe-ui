@@ -1,27 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReduxPromise from 'redux-promise';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import logger from 'redux-logger';
+// import { BrowserRouter } from 'react-router-dom';
 
 import App from './components/App';
 
 import './index.css';
-// import registerServiceWorker from './registerServiceWorker';
-import reducers from './reducers';
+import configureStore from './store/configure-store';
 
-const store = createStore(
-  reducers,
-  applyMiddleware(logger, ReduxPromise)
-);
+import initialState from './test-data/initial-state';
+
+const store = configureStore(initialState); // pass initial state here
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App/>
-    </BrowserRouter>
+    <App/>
   </Provider>, document.getElementById('root')
 );
-// registerServiceWorker();
+
+// with router
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <BrowserRouter>
+//       <App/>
+//     </BrowserRouter>
+//   </Provider>, document.getElementById('root')
+// );

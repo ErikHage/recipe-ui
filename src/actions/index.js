@@ -1,12 +1,24 @@
-export const FETCH_DATA = 'fetch_data';
+import vodkaSauceRecipe from '../test-data/vodka-sauce.json';
 
-// default function to display redux action format
-export function defaultFunction() {
-    let testVar = 'Hello';
+export const FETCH_RECIPES = 'fetch_recipes';
 
-    // action object format being return to a reducer
-    return {
-        type: FETCH_DATA,
-        payload: testVar
-    }
+export function fetchRecipes() {
+  // TODO load recipes from service
+  return {
+    type: FETCH_RECIPES,
+    recipes: [{
+      name: 'Vodka Sauce',
+      filename: 'vodka-sauce.json',
+    }],
+  }
+}
+
+export const SELECT_RECIPE = 'select_recipe';
+
+export function selectRecipe(filename) {
+  // TODO load recipe from service
+  return {
+    type: SELECT_RECIPE,
+    recipe: vodkaSauceRecipe,
+  }
 }

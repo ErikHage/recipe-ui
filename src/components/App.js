@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+// import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -16,12 +16,15 @@ class App extends Component {
 
   render() {
     return (
-      <main>
-        <Switch>
-          <Route exact path="/" component={RecipesList} />
-          <Route path="/recipe/:filename" component={RecipePage} />
-        </Switch>
-      </main>
+      <div>
+        <RecipesList />
+      </div>
+      // <main>
+      //   <Switch>
+      //     <Route exact path="/" component={RecipesList} />
+      //     <Route path="/recipe/:filename" component={RecipePage} />
+      //   </Switch>
+      // </main>
     );
   }
 }
@@ -29,7 +32,7 @@ class App extends Component {
 // function to convert the global state obtained from redux to local props
 function mapStateToProps(state) {
   return {
-    default: state.default
+    state,
   };
 }
 
