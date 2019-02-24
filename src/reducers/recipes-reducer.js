@@ -1,30 +1,19 @@
-// import { FETCH_RECIPES, SELECT_RECIPE } from '../actions';
+import { SELECT_RECIPE, CLEAR_SELECTION } from '../actions/recipe-actions';
 
-// export default (state = {}, action) => {
-//     switch(action.type) {
-//         case FETCH_RECIPES: 
-//             return (Object.assign(
-//               {}, 
-//               state, 
-//               { recipes: action.recipes }
-//             ));
-//         case SELECT_RECIPE: 
-//             return (Object.assign(
-//               {}, 
-//               state, 
-//               { currentSelection: action.recipe }
-//             ));    
-//         default:
-//             return state;
-//     }
-// }
+import recipeService from '../services/recipes';
 
 export default function recipesReducer(state = {}, action) {
   switch (action.type) {
-    case 'SELECT_RECIPE':
+    case SELECT_RECIPE:
+      const recipe = recipeService.getRecipe(action.filename)
+
       return Object.assign({}, state, {
-        selected: action.recipe,
+        selected: recipe,
       });
+    case CLEAR_SELECTION: 
+      return Object.assign({}, state, {
+        selected: undefined,
+      })  
     default: 
       return state;
   }

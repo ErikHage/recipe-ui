@@ -1,0 +1,98 @@
+{
+  "recipeId": "f67ac524-c043-4429-bab3-9f4ce36bde5c",
+  "name": "Pound Cake",
+  "prep": {
+    "kind": "minutes",
+    "value": 5
+  },
+  "cook": {
+    "kind": "minutes",
+    "value": 25
+  },  
+  "yield": {
+    "kind": "servings",
+    "value": 6
+  },
+  "ingredients": [
+    {
+      "name": "Tomato Sauce",
+      "quantity": {
+        "kind": "ounce",
+        "value": 29
+      },
+      "notes": "A 29 oz. can"
+    },
+    {
+      "name": "Heavy Cream",
+      "quantity": {
+        "kind": "cup",
+        "value": 1
+      },
+      "notes": null
+    },
+    {
+      "name": "Vodka",
+      "quantity": {
+        "kind": "cup",
+        "value": 0.5
+      },
+      "notes": "Absolute is good, nothing too cheap, but doesn't have to be super expensive"
+    },
+    {
+      "name": "Butter",
+      "quantity": {
+        "kind": "tablespoon",
+        "value": 1
+      },
+      "notes": "...or more if you like"
+    },
+    {
+      "name": "Fresh Ground Black Pepper",
+      "quantity": {
+        "kind": "pinch",
+        "value": 1
+      },
+      "notes": "to taste"
+    },
+    {
+      "name": "Table Salt",
+      "quantity": {
+        "kind": "pinch",
+        "value": 1
+      },
+      "notes": "to taste"
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "text": "Set stove to medium heat"
+    },
+    {
+      "id": 2,
+      "text": "In a saucepan add the butter and freshly ground black pepper"
+    },
+    {
+      "id": 3,
+      "text": "After the butter has melted, add the vodka"
+    },
+    {
+      "id": 4,
+      "text": "When the vodka has reduced by half, add the tomato sauce and heavy cream, stirring frequently"
+    },
+    {
+      "id": 5,
+      "text": "While continuing to stir often, allow the sauce to simmer for 15 minutes, or until desired thickness is reached"
+    },
+    {
+      "id": 6,
+      "text": "Season with salt and freshly ground pepper to taste"
+    }
+  ],
+  "keywords": [
+    "sauce",
+    "pasta",
+    "cream",
+    "tomato"
+  ]
+}

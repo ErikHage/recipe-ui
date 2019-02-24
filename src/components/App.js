@@ -15,9 +15,15 @@ class App extends Component {
   }
 
   render() {
+    let content = <RecipesList />
+
+    if (this.props.recipes.selected) {
+      content = <RecipePage />
+    }
+
     return (
       <div>
-        <RecipesList />
+        {content}
       </div>
       // <main>
       //   <Switch>
@@ -31,9 +37,7 @@ class App extends Component {
 
 // function to convert the global state obtained from redux to local props
 function mapStateToProps(state) {
-  return {
-    state,
-  };
+  return state;
 }
 
 export default connect(mapStateToProps, {})(App);

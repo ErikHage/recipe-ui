@@ -1,66 +1,43 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import * as recipeActions from '../../actions/recipe-actions';
 
 import RecipeHeader from './RecipeHeader';
 import IngredientsSection from './IngredientsSection';
 import StepsSection from './StepsSection';
 import RecipeStats from './RecipeStats';
 
-import recipesService from '../../services/recipes';
-
-// TODO use actions and reducers instead of this fetch
-const defaultRecipeContext = {
-  recipe: null,
-  isFetching: true,
-  errorFetching: null,
-};
-
 class RecipePage extends Component {
   constructor(props) {
-    super(props)
-    this.state = defaultRecipeContext;
+    super(props);
+
+    this.clearSelection = this.clearSelection.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchRecipe();
-  }
-
-  async fetchRecipe() {
-    await recipesService
-      .getRecipe(this.props.match.params.filename)
-      .then(recipe => {
-        this.setState({
-          recipe,
-          isFetching: false
-        });
-      })
-      .catch(error => this.setState({
-        errorFetching: error, 
-        isFetching: false
-      }));
+  clearSelection() {
+    this.props.dispatch(recipeActions.clearSelection());
   }
 
   render() {
-    let content;
-    
-    if (this.state.isFetching) {
-      content = (<p>loading...</p>)
-    } else {
-      content = (
-        <div>
-          <RecipeHeader recipeName={this.state.recipe.name} />
-          <RecipeStats prep={this.state.recipe.prep} cook={this.state.recipe.cook} yield={this.state.recipe.yield} />
-          <IngredientsSection ingredients={this.state.recipe.ingredients} />
-          <StepsSection steps={this.state.recipe.steps} />
-        </div>
-      );
-    }
+    const recipe = this.props.recipe;
 
     return (
       <div>
-        {content}
+        <button onClick={this.clearSelection}>Back</button>
+        <RecipeHeader recipeName={recipe.name} />
+        <RecipeStats prep={recipe.prep} cook={recipe.cook} yield={recipe.yield} />
+        <IngredientsSection ingredients={recipe.ingredients} />
+        <StepsSection steps={recipe.steps} />
       </div>
     );
   }
 }
 
-export default RecipePage;
+function mapStateToProps(state, ownProps) {
+  return {
+    recipe: state.recipes.selected,
+  };
+}
+
+export default connect(mapStateToProps)(RecipePage);
