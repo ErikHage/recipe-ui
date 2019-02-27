@@ -8,21 +8,28 @@ class RecipesList extends Component {
     super(props);
 
     this.selectRecipe = this.selectRecipe.bind(this);
+    this.clearSelection = this.clearSelection.bind(this);
   }
 
   selectRecipe(event) {
     this.props.dispatch(recipeActions.selectRecipe(event.target.name));
   }
 
+  clearSelection() {
+    this.props.dispatch(recipeActions.clearSelection());
+  }
+
   render() {
     return (
-      <div>
+      <div className="recipes-list">
+        <h4>Recipes</h4>
         {this.props.files.map((recipe, index) => 
           <div key={index}>
-            <a onClick={this.selectRecipe} name={recipe.filename}>{recipe.name}</a>
+            <a className="recipes-list-item" onClick={this.selectRecipe} name={recipe.filename}>{recipe.name}</a>
             <br />
           </div>
         )}
+        <button onClick={this.clearSelection}>Clear</button>
       </div>
     );
   }
