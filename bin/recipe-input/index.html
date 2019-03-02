@@ -1,40 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
   <meta charset="utf-8">
-  <title>Blank HTML5</title>
+  <title>Recipe Input Tool</title>
 </head>
+
 <body>
   <h2>Enter a recipe</h2>
 
   <form id="recipeForm">
-    <div class="fb-text form-group field-recipeName">
-      <label for="recipeName" class="fb-text-label">Recipe Name</label>
-      <input type="text" class="form-control" name="recipeName" id="recipeName">
-    </div>
-    <div class="fb-text form-group field-prepTimeKind">
-      <label for="prepTimeKind" class="fb-text-label">Prep Time Kind</label>
-      <input type="text" class="form-control" name="prepTimeKind" id="prepTimeKind">
-    </div>
-    <div class="fb-text form-group field-prepTimeValue">
-      <label for="prepTimeValue" class="fb-text-label">Prep Time Value</label>
-      <input type="number" class="form-control" name="prepTimeValue" id="prepTimeValue">
-    </div>
-    <div class="fb-text form-group field-cookTimeKind">
-      <label for="cookTimeKind" class="fb-text-label">Cook Time Kind</label>
-      <input type="text" class="form-control" name="cookTimeKind" id="cookTimeKind">
-    </div>
-    <div class="fb-text form-group field-cookTimeValue">
-      <label for="cookTimeValue" class="fb-text-label">Cook Time Value</label>
-      <input type="number" class="form-control" name="cookTimeValue" id="cookTimeValue">
-    </div>
-    <div class="fb-text form-group field-yieldKind">
-      <label for="yieldKind" class="fb-text-label">Yield Kind</label>
-      <input type="text" class="form-control" name="yieldKind" id="yieldKind">
-    </div>
-    <div class="fb-text form-group field-yieldValue">
-      <label for="yieldValue" class="fb-text-label">Yield Value</label>
-      <input type="number" class="form-control" name="yieldValue" id="yieldValue">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="fb-text form-group">
+          <label for="recipeName" class="fb-text-label">Recipe Name</label>
+          <input type="text" class="form-control" name="recipeName" id="recipeName">
+        </div>
+        <div class="fb-text form-group">
+          <label for="prepTimeKind" class="fb-text-label">Prep Time Kind</label>
+          <input type="text" class="form-control" name="prepTimeKind" id="prepTimeKind">
+        </div>
+        <div class="fb-text form-group">
+          <label for="prepTimeValue" class="fb-text-label">Prep Time Value</label>
+          <input type="number" class="form-control" name="prepTimeValue" id="prepTimeValue">
+        </div>
+        <div class="fb-text form-group">
+          <label for="cookTimeKind" class="fb-text-label">Cook Time Kind</label>
+          <input type="text" class="form-control" name="cookTimeKind" id="cookTimeKind">
+        </div>
+        <div class="fb-text form-group">
+          <label for="cookTimeValue" class="fb-text-label">Cook Time Value</label>
+          <input type="number" class="form-control" name="cookTimeValue" id="cookTimeValue">
+        </div>
+        <div class="fb-text form-group">
+          <label for="yieldKind" class="fb-text-label">Yield Kind</label>
+          <input type="text" class="form-control" name="yieldKind" id="yieldKind">
+        </div>
+        <div class="fb-text form-group">
+          <label for="yieldValue" class="fb-text-label">Yield Value</label>
+          <input type="number" class="form-control" name="yieldValue" id="yieldValue">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div id="ingredients">
+          <h3>Ingredients</h3>
+        </div>
+        <button id="addIngredientButton">Add Ingredient</button>
+      </div>
+      <div class="col-md-6">
+          <h3>Steps</h3>
+          <div id="steps" class="fb-text form-group"></div>
+          <button id="addStepButton">Add Step</button>
+        </div>
     </div>
   </form>
 
