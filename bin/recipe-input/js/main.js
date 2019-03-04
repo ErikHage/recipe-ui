@@ -3,6 +3,10 @@ $(document).ready(function() {
   let ingredientIndex = 0;
   let stepIndex = 0;
 
+  function generateUuid() {
+
+  }
+
   function addIngredient() {
     const ingredientsTBody = $('#ingredients');
 
@@ -64,7 +68,7 @@ $(document).ready(function() {
 
   toJsonButton.click(function(e) {
     e.preventDefault();
-    const recipeId = 'TODO generate me plz';
+    const recipeId = $('#recipeId').val();
     const recipeName = $('#recipeName').val();
     const prepTimeKind = $('#prepTimeKind').val();
     const prepTimeValue = Number($('#prepTimeValue').val());

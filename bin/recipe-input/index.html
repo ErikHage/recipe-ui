@@ -11,6 +11,8 @@
 <body>
   <h2>Enter a recipe</h2>
 
+  <input id="recipeId" type="hidden" value="">
+
   <form id="recipeForm">
     <div class="row">
       <div class="col-md-4">
@@ -86,8 +88,15 @@
 
   <textarea id="outputTextBox" rows="100" cols="200"></textarea>
 
+  <script src="http://wzrd.in/standalone/uuid%2Fv4@latest"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#recipeId').val(uuidv4());
+    });
+  </script>
 </body>
 
 </html>
