@@ -4,25 +4,35 @@ $(document).ready(function() {
   let stepIndex = 0;
 
   function addIngredient() {
-    const ingredientsDiv = $('#ingredients');
+    const ingredientsTBody = $('#ingredients');
 
     ingredientIndex = ingredientIndex + 1;
 
-    const newHTML = `
-      <div class="fb-text form-group">
-        <p>Ingredient ${(ingredientIndex)}</p>
-        <label for="ingredientName${ingredientIndex}" class="fb-text-label">Name</label>
-        <input type="text" class="form-control" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}">
-        <label for="quantityKind${ingredientIndex}" class="fb-text-label">Quantity Kind</label>
-        <input type="text" class="form-control" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}">
-        <label for="quantityValue${ingredientIndex}" class="fb-text-label">Quantity Value</label>
-        <input type="number" class="form-control" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}">
-        <label for="notes${ingredientIndex}" class="fb-text-label">Notes</label>
-        <input type="text" class="form-control" name="notes${ingredientIndex}" id="notes${ingredientIndex}">
-      </div>
-    `;
+    // bootstrap layout
+    // const newHTML = `
+    //   <div class="form-group">
+    //     <p>Ingredient ${(ingredientIndex)}</p>
+    //     <label for="ingredientName${ingredientIndex}">Name</label>
+    //     <input type="text" class="form-control" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}">
+    //     <label for="quantityKind${ingredientIndex}">Quantity Kind</label>
+    //     <input type="text" class="form-control" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}">
+    //     <label for="quantityValue${ingredientIndex}">Quantity Value</label>
+    //     <input type="number" class="form-control" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}">
+    //     <label for="notes${ingredientIndex}">Notes</label>
+    //     <input type="text" class="form-control" name="notes${ingredientIndex}" id="notes${ingredientIndex}">
+    //   </div>
+    // `;
 
-    ingredientsDiv.append($.parseHTML(newHTML));
+    const newHTML = `
+    <tr>
+      <td><input style="display:table-cell; width:100%" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}"></td>
+      <td><input style="display:table-cell; width:100%" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}"></td>
+      <td><input style="display:table-cell; width:100%" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}"></td>
+      <td><input style="display:table-cell; width:100%" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}"></td>
+    </tr>
+  `;
+
+    ingredientsTBody.append($.parseHTML(newHTML));
   };
 
   function addStep() {
@@ -62,7 +72,10 @@ $(document).ready(function() {
     const cookTimeValue = Number($('#cookTimeValue').val());
     const yieldKind = $('#yieldKind').val();
     const yieldValue = Number($('#yieldValue').val());
-    const keywords = $('#keywords').val().split(',').filter(keyword => keyword.length > 0);
+    const keywords = $('#keywords').val()
+      .split(',')
+      .filter(keyword => keyword.length > 0)
+      .map(keyword => keyword.trim());
 
     const ingredients = [];
     const steps = [];
