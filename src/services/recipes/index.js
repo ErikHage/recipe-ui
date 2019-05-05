@@ -1,7 +1,7 @@
 import vodkaSauceRecipe from '../../test-data/vodka-sauce.json';
 import poundCakeRecipe from '../../test-data/pound-cake.json';
 
-const getRecipes = () => [
+const getRecipes = async () => [
   {
     "name": "Vodka Sauce",
     "filename": "vodka-sauce.json",

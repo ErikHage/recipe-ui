@@ -1,16 +1,34 @@
-export const SELECT_RECIPE = 'SELECT_RECIPE';
+import recipesService from '../services/recipes';
+import * as actions from './action-types';
 
 export function selectRecipe(filename) {
   return {
-    type: SELECT_RECIPE,
+    type: actions.SELECT_RECIPE,
     filename,
   };
 }
 
-export const CLEAR_SELECTION = 'CLEAR_SELECTION';
-
 export function clearSelection() {
   return {
-    type: CLEAR_SELECTION,
+    type: actions.CLEAR_SELECTION,
+  };
+}
+
+export function loadRecipesSuccess(recipes) {
+  return {
+    type: actions.LOAD_RECIPES_SUCCESS,
+    recipes,
+  };
+}
+
+export function loadRecipes() {
+  return async function (dispatch) {
+    try {
+      const recipes = await recipesService.getRecipes();
+      return dispatch(loadRecipesSuccess(recipes));
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
   };
 }
