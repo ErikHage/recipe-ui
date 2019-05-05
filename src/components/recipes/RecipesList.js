@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import PropTypes from 'prop-types';
-import * as recipeActions from '../../actions/recipe-actions';
 import { bindActionCreators } from "redux";
+import PropTypes from 'prop-types';
+
+import * as recipeActions from '../../actions/recipe-actions';
 
 class RecipesList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.selectRecipe = this.selectRecipe.bind(this);
-    this.clearSelection = this.clearSelection.bind(this);
-  }
-
-  selectRecipe(event) {
+  selectRecipe = (event) => {
     this.props.actions.loadSelectedRecipe(event.target.name);
-  }
+  };
 
-  clearSelection() {
+  clearSelection = () => {
     this.props.actions.clearSelection();
-  }
+  };
 
   render() {
     return (
@@ -39,9 +32,11 @@ class RecipesList extends Component {
 
 RecipesList.propTupes = {
   actions: PropTypes.object.isRequired,
+  files: PropTypes.array.isRequired,
+  selectedRecipe: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     files: state.recipes.files,
     selectedRecipe: state.recipes.selected,
@@ -50,7 +45,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(recipeActions, dispatch),
+    actions: {
+      loadSelectedRecipe: bindActionCreators(recipeActions.loadSelectedRecipe, dispatch),
+      clearSelection: bindActionCreators(recipeActions.clearSelection, dispatch),
+    },
   };
 }
 

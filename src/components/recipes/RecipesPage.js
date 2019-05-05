@@ -10,7 +10,11 @@ import Recipe from './Recipe';
 
 class RecipesPage extends Component {
   componentDidMount() {
-    this.props.actions.loadRecipes();
+    const { actions, files } = this.props;
+
+    if (files.length === 0) {
+      actions.loadRecipes();
+    }
   }
 
   render() {
@@ -25,17 +29,20 @@ class RecipesPage extends Component {
 
 RecipesPage.propTupes = {
   actions: PropTypes.object.isRequired,
+  files: PropTypes.array.isRequired,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
-    state,
+    files: state.recipes.files,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(recipeActions, dispatch),
+    actions: {
+      loadRecipes: bindActionCreators(recipeActions.loadRecipes, dispatch)
+    },
   };
 }
 

@@ -1,14 +1,14 @@
 import recipesService from '../services/recipes';
 import * as actions from './action-types';
 
-export function selectRecipeSuccess(recipe) {
+export function loadSelectedRecipeSuccess(recipe) {
   return {
     type: actions.SELECT_RECIPE_SUCCESS,
     recipe,
   };
 }
 
-export function selectRecipeError(error) {
+export function loadSelectedRecipeError(error) {
   return {
     type: actions.SELECT_RECIPE_ERROR,
     error,
@@ -50,9 +50,9 @@ export function loadSelectedRecipe(filename) {
   return async function (dispatch) {
     try {
       const recipe = await recipesService.getRecipe(filename);
-      return dispatch(selectRecipeSuccess(recipe));
+      return dispatch(loadSelectedRecipeSuccess(recipe));
     } catch (err) {
-      return dispatch(selectRecipeError(err));
+      return dispatch(loadSelectedRecipeError(err));
     }
   }
 }

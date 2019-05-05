@@ -18,7 +18,7 @@ class Recipe extends Component {
   renderRecipe(recipe) {
     return (
       <div className="recipe-content">
-        <RecipeHeader recipeName={recipe.name} />
+        <RecipeHeader recipeName={recipe.recipeName} />
         <RecipeStats prep={recipe.prep} cook={recipe.cook} yield={recipe.yield} />
         <IngredientsSection ingredients={recipe.ingredients} />
         <StepsSection steps={recipe.steps} />
