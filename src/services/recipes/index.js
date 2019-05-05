@@ -1,23 +1,16 @@
 import vodkaSauceRecipe from '../../test-data/vodka-sauce.json';
 import poundCakeRecipe from '../../test-data/pound-cake.json';
 
-const getRecipes = async () => [
-  {
-    "name": "Vodka Sauce",
-    "filename": "vodka-sauce.json",
-  },
-  {
-    "name": "Pound Cake",
-    "filename": "pound-cake.json",
-  }
-];
+import recipesDatasource from './datasource';
+
+const getRecipes = async () => recipesDatasource.getRecipes();
 
 const recipes = {
   'vodka-sauce.json': vodkaSauceRecipe,
   'pound-cake.json': poundCakeRecipe
 };
 
-const getRecipe = (filename) => recipes[filename];
+const getRecipe = async (filename) => recipesDatasource.getRecipe(filename);
 
 export default {
   getRecipes,

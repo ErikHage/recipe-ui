@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import PropTypes from 'prop-types';
 import * as recipeActions from '../../actions/recipe-actions';
+import { bindActionCreators } from "redux";
 
 class RecipesList extends Component {
   constructor(props) {
@@ -12,11 +14,11 @@ class RecipesList extends Component {
   }
 
   selectRecipe(event) {
-    this.props.dispatch(recipeActions.selectRecipe(event.target.name));
+    this.props.actions.loadSelectedRecipe(event.target.name);
   }
 
   clearSelection() {
-    this.props.dispatch(recipeActions.clearSelection());
+    this.props.actions.clearSelection();
   }
 
   render() {
@@ -35,6 +37,10 @@ class RecipesList extends Component {
   }
 }
 
+RecipesList.propTupes = {
+  actions: PropTypes.object.isRequired,
+};
+
 function mapStateToProps(state, ownProps) {
   return {
     files: state.recipes.files,
@@ -42,4 +48,10 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(RecipesList);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(recipeActions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesList);
