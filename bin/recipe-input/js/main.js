@@ -3,10 +3,6 @@ $(document).ready(function() {
   let ingredientIndex = 0;
   let stepIndex = 0;
 
-  function generateUuid() {
-
-  }
-
   function addIngredient() {
     const ingredientsTBody = $('#ingredients');
 
@@ -37,7 +33,7 @@ $(document).ready(function() {
   `;
 
     ingredientsTBody.append($.parseHTML(newHTML));
-  };
+  }
 
   function addStep() {
     const stepsDiv = $('#steps');
@@ -50,7 +46,7 @@ $(document).ready(function() {
     `;
 
     stepsDiv.append($.parseHTML(newHTML));
-  };
+  }
   
   const addIngredientButton = $('#addIngredientButton');
   const addStepButton = $('#addStepButton');
