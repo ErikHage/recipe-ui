@@ -1,11 +1,15 @@
 {
   "recipes": {
+    "message": "message to display",
     "files": [
       {
         "name": "normalized name of the recipe",
         "filename": "name of the github file location of the recipe"
       }
     ],
+    "recipeCache": {
+      "filename": {}
+    },
     "selected": {
       "recipeId": "unique id for the recipe",
       "name": "String",
