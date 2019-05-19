@@ -1,3 +1,5 @@
+import {toastr} from 'react-redux-toastr';
+
 import recipesService from '../services/recipes';
 import * as actions from './action-types';
 
@@ -40,8 +42,10 @@ export function loadRecipes() {
   return async function (dispatch) {
     try {
       const recipes = await recipesService.getRecipes();
+      toastr.success('Recipes Loaded successfully!');
       return dispatch(loadRecipesSuccess(recipes));
     } catch (err) {
+      toastr.error('Recipes failed to load :-(');
       return dispatch(loadRecipesError(err));
     }
   };
