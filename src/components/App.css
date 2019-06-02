@@ -28,6 +28,7 @@ body {
   display: flex;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
 }
 
 .recipes-list {
@@ -38,12 +39,29 @@ body {
   flex: 1 1 auto;
 }
 
+.recipes-list-menu-title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.recipe-selection-menu {
+  width: 100%;
+  height: 95vh;
+  overflow-y: scroll;
+}
+
 .recipes-list-item {
   display: flex;
+}
+
+.default-recipe-content {
+  display: flex;
+  justify-content: center;
 }
 
 .recipe-content {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  flex-basis: 75%;
 }

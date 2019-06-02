@@ -10,7 +10,7 @@ class Recipe extends Component {
   renderDefaultContent() {
     return (
       <div className="recipe-content">
-        <h3>Pick a recipe from the menu on the left to view.</h3>
+        <h3 className="default-recipe-content">Pick a recipe from the menu on the left to view.</h3>
       </div>
     );
   }

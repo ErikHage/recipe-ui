@@ -24,14 +24,15 @@ class RecipesList extends Component {
   render() {
     return (
       <div className="recipes-list">
-        <h4>Recipes</h4>
+        <span className="recipes-list-menu-title">Recipes</span>
+        <button onClick={this.clearSelection}>Clear Selection</button>
+        <div className="recipe-selection-menu">
         {this.props.files.map((recipe, index) => 
           <div key={index}>
             <a className="recipes-list-item" onClick={this.selectRecipe} name={recipe.filename}>{recipe.name}</a>
-            <br />
           </div>
         )}
-        <button onClick={this.clearSelection}>Clear</button>
+        </div>
       </div>
     );
   }
