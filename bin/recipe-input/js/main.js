@@ -64,6 +64,7 @@ $(document).ready(function() {
 
   toJsonButton.click(function(e) {
     e.preventDefault();
+
     const recipeId = $('#recipeId').val();
     const recipeName = $('#recipeName').val();
     const prepTimeKind = $('#prepTimeKind').val();
@@ -76,6 +77,12 @@ $(document).ready(function() {
       .split(',')
       .filter(keyword => keyword.length > 0)
       .map(keyword => keyword.trim());
+
+    const calories = Number($('#calories').val());
+    const fats = Number($('#fats').val());
+    const carbohydrates = Number($('#carbohydrates').val());
+    const sugars = Number($('#sugars').val());
+    const protein = Number($('#protein').val());
 
     const ingredients = [];
     const steps = [];
@@ -118,6 +125,13 @@ $(document).ready(function() {
       ingredients,
       steps,
       keywords,
+      nutrition: {
+        calories: calories <= 0 ? null : calories,
+        fats: fats <= 0 ? null : fats,
+        carbohydrates: carbohydrates <= 0 ? null : carbohydrates,
+        sugars: sugars <= 0 ? null : sugars,
+        protein: protein <= 0 ? null : protein,
+      },
     };
 
     $('#outputTextBox').val(JSON.stringify(json, null, 2));
