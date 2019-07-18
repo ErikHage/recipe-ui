@@ -5,6 +5,7 @@ import RecipeHeader from './RecipeHeader';
 import IngredientsSection from './IngredientsSection';
 import StepsSection from './StepsSection';
 import RecipeStats from './RecipeStats';
+import NutritionSection from './NutritionSection';
 
 class Recipe extends Component {
   renderDefaultContent() {
@@ -22,6 +23,7 @@ class Recipe extends Component {
         <RecipeStats prep={recipe.prep} cook={recipe.cook} yield={recipe.yield} />
         <IngredientsSection ingredients={recipe.ingredients} />
         <StepsSection steps={recipe.steps} />
+        <NutritionSection nutrition={recipe.nutrition}/>
       </div>
     );
   }

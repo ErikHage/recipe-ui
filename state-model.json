@@ -43,7 +43,14 @@
       ],
       "keywords": [
         "Strings"
-      ]
+      ],
+      "nutrition": {
+        "calories": "Number",
+        "fats": "Number",
+        "carbohydrates": "Number",
+        "sugars": "Number",
+        "protein": "Number"
+      }
     }
   }
 }
