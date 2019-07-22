@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 
 class NutritionSection extends Component {
   render() {
-    const { nutrition = {} } = this.props;
+    const { nutrition = null }  = this.props;
+
+    if (nutrition === null) {
+      return (
+        <div>
+          <h3>Nutritional Information</h3>
+          <p>Not defined</p>
+        </div>
+      );
+    }
 
     return (
       <div>
