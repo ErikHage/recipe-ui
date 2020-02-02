@@ -9,10 +9,11 @@ ENV PATH /app/node_modules/.bin:$PATH \
     HOME /app
 
 # install and cache app dependencies
-COPY package.json ${HOME}/package.json
+COPY ./package.json ${HOME}/package.json
 
 RUN npm install --loglevel info
 
+# copy source code
 COPY ./public ${HOME}/public
 COPY ./src ${HOME}/src
 
