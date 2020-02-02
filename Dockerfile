@@ -5,12 +5,18 @@ FROM node:12.2.0-alpine
 WORKDIR /app
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH \
+    HOME /app
 
 # install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install --silent
-RUN npm install react-scripts@3.0.1 -g --silent
+COPY package.json ${HOME}/package.json
+
+RUN npm install --loglevel info
+
+COPY ./public ${HOME}/public
+COPY ./src ${HOME}/src
+
+RUN npm prune --production
 
 # start app
 CMD ["npm", "start"]
