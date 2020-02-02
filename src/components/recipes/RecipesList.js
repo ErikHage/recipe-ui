@@ -7,14 +7,14 @@ import * as recipeActions from '../../actions/recipe-actions';
 
 class RecipesList extends Component {
   selectRecipe = (event) => {
-    const recipeFilename = event.target.name;
-    const cachedRecipe = this.props.recipeCache[recipeFilename];
+    const recipeId = event.target.name;
+    const cachedRecipe = this.props.recipeCache[recipeId];
 
     if (cachedRecipe) {
-      return this.props.actions.loadSelectedRecipeSuccess(cachedRecipe, recipeFilename);
+      return this.props.actions.loadSelectedRecipeSuccess(cachedRecipe, recipeId);
     }
 
-    return this.props.actions.loadSelectedRecipe(recipeFilename);
+    return this.props.actions.loadSelectedRecipe(recipeId);
   };
 
   clearSelection = () => {
@@ -29,7 +29,7 @@ class RecipesList extends Component {
         <div className="recipe-selection-menu">
         {this.props.files.map((recipe, index) => 
           <div key={index}>
-            <a className="recipes-list-item" onClick={this.selectRecipe} name={recipe.filename}>{recipe.name}</a>
+            <a className="recipes-list-item" onClick={this.selectRecipe} name={recipe.recipeId}>{recipe.recipeName}</a>
           </div>
         )}
         </div>

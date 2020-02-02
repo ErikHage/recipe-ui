@@ -2,7 +2,7 @@ import recipesDatasource from './datasource';
 
 const getRecipes = async () => recipesDatasource.getRecipes();
 
-const getRecipe = async (filename) => recipesDatasource.getRecipe(filename);
+const getRecipe = async (recipeId) => recipesDatasource.getRecipe(recipeId);
 
 export default {
   getRecipes,

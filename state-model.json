@@ -3,8 +3,9 @@
     "message": "message to display",
     "files": [
       {
-        "name": "normalized name of the recipe",
-        "filename": "name of the github file location of the recipe"
+        "recipeName": "normalized name of the recipe",
+        "filename": "name of the github file location of the recipe",
+        "recipeId": "unique identifier of the recipe"
       }
     ],
     "recipeCache": {

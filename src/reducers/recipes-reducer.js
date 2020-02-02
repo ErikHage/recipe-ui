@@ -12,7 +12,7 @@ export default function recipesReducer(state = initialState, action) {
       const recipeCache = {
         ...state.recipeCache
       };
-      recipeCache[action.recipe.filename] = action.recipe;
+      recipeCache[action.recipe.recipeId] = action.recipe;
 
       return Object.assign({}, state, {
         selected: action.recipe,

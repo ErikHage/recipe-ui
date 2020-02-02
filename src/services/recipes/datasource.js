@@ -1,43 +1,21 @@
 import request from 'superagent';
 
-/**
- * Expects a filename in the format "recipe-name.json" and transforms it to "Recipe Name"
- * @param {*} filename 
- */
-const parseNameFromFileName = (filename) => {
-  const [snakeCaseName] = filename.split('.');
-  const words = snakeCaseName.split('-');
-
-  return words
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
-
-const fromResponse = (rawData) => ({
-  name: parseNameFromFileName(rawData.name),
-  filename: rawData.name,
-});
+// todo map response body to local obj
 
 const getRecipes = async () => {
-  const res = await request
-  .get('http://api.github.com/repos/ErikHage/my-recipes/contents/json')
-  .accept('application/json');
-
-  return res.body.map(fromResponse);
-};
-
-const parseResponseBody = (body) => {
-  const { content, encoding } = body;  
-  const buff = new Buffer(content, encoding);  
-  return  JSON.parse(buff.toString());
-};
-
-const getRecipe = async (filename) => {
   const { body } = await request
-  .get(`http://api.github.com/repos/ErikHage/my-recipes/contents/json/${filename}?ref=master`)
+  .get('http://theferalrooster.com/api/recipes-service/recipes')
   .accept('application/json');
 
-  return parseResponseBody(body);
+  return body;
+};
+
+const getRecipe = async (recipeId) => {
+  const { body } = await request
+  .get(`http://theferalrooster.com/api/recipes-service/recipes/${recipeId}`)
+  .accept('application/json');
+
+  return body;
 };
 
 export default {

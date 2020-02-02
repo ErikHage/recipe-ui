@@ -3,11 +3,11 @@ import {toastr} from 'react-redux-toastr';
 import recipesService from '../services/recipes';
 import * as actions from './action-types';
 
-export function loadSelectedRecipeSuccess(recipe, filename) {
+export function loadSelectedRecipeSuccess(recipe, recipeId) {
   return {
     type: actions.SELECT_RECIPE_SUCCESS,
     recipe,
-    filename,
+    recipeId,
   };
 }
 
@@ -51,11 +51,11 @@ export function loadRecipes() {
   };
 }
 
-export function loadSelectedRecipe(filename) {
+export function loadSelectedRecipe(recipeId) {
   return async function (dispatch) {
     try {
-      const recipe = await recipesService.getRecipe(filename);
-      return dispatch(loadSelectedRecipeSuccess(recipe, filename));
+      const recipe = await recipesService.getRecipe(recipeId);
+      return dispatch(loadSelectedRecipeSuccess(recipe, recipeId));
     } catch (err) {
       return dispatch(loadSelectedRecipeError(err));
     }
