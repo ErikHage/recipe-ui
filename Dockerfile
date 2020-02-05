@@ -1,15 +1,28 @@
-FROM node:12.2.0-alpine as build
+# build environment
+FROM node:12.14.1-alpine as build
 
-ENV HOME=/app \
-    PATH=/app/node_modules/.bin:$PATH
+ENV HOME=/app
+
+ENV PATH=${HOME}/node_modules/.bin:$PATH
 
 WORKDIR ${HOME}
 
-COPY ./package.json ${HOME}/package.json
+COPY package.json ${HOME}/package.json
 
-RUN npm i --loglevel info
-RUN npm i react-scripts@3.0.1 -g --loglevel info
+RUN npm install --silent
+RUN npm install react-scripts@3.3.1 -g --silent
 
 COPY . /app
 
-CMD ["npm", "start"]
+RUN npm run build
+
+# production environment
+FROM nginx:1.16.0-alpine
+
+ENV HOME=/app
+
+COPY --from=build ${HOME}/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
