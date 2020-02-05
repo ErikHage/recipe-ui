@@ -21,7 +21,7 @@ FROM nginx:1.16.0-alpine
 
 ENV HOME=/app
 
-COPY --from=build ${HOME}/build /usr/share/nginx/html
+COPY --from=build ${HOME}/build /usr/share/nginx/html/recipes
 
 EXPOSE 80
 
