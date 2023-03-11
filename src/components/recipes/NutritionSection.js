@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class NutritionSection extends Component {
   render() {
-    const { nutrition = null }  = this.props;
+    const { nutrition = null } = this.props;
 
     if (nutrition === null) {
       return (
@@ -14,8 +14,8 @@ class NutritionSection extends Component {
     }
 
     return (
-      <div>
-        <h3>Nutritional Information</h3>
+      <div className={'recipe-section nutrition-section'}>
+        <h3 className={'recipe-section-header'}>Nutritional Information</h3>
         <table id="nutritionalInformation">
           <tbody>
             <tr>

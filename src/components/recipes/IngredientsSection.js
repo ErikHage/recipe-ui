@@ -23,19 +23,20 @@ function toIngredientRow(ingredient, index) {
 
   let content = getQuantity(quantity);
 
-  content += `${name} `;
-
   return (
-      <li key={index}>{content} <i>{getNotes(notes)}</i></li>
+      <li key={index} className={'ingredients-ul-item'}>
+        <span className={'ingredient-measure'}>{content}</span>
+        <span className={'ingredient-description'}>{name} <i>{getNotes(notes)}</i></span>
+      </li>
   );
 }
 
 class IngredientsSection extends Component {
   render() {
     return (
-      <div>
-        <h3>Ingredients</h3>
-        <ul>
+      <div className={'recipe-section ingredients-section'}>
+        <h3 className={'recipe-section-header'}>Ingredients</h3>
+        <ul className={'ingredients-ul'}>
           {this.props.ingredients.map(toIngredientRow)}
         </ul>
       </div>

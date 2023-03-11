@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class RecipeStats extends Component {
   render() {
     return (
-      <div>
+      <div className={'recipe-section stats-section'}>
         <table>
           <tbody>
             <tr>

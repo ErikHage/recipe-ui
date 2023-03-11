@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  recipe-ui:
+    restart: always
+    image: ehage/recipe-ui:${VERSION_TAG}
+    container_name: recipe-ui
+    ports:
+      - '33457:80'

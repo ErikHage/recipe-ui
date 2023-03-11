@@ -13,8 +13,8 @@ class StepsSection extends Component {
     const sortedSteps = this.props.steps.sort(compareByStepId);
 
     return (
-      <div>
-        <h3>Steps</h3>
+      <div className={'recipe-section steps-section'}>
+        <h3 className={'recipe-section-header'}>Steps</h3>
         <ol>
           {sortedSteps.map((step, index) =>
             <li key={index}>{step.text}</li>

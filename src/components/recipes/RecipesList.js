@@ -21,17 +21,27 @@ class RecipesList extends Component {
     this.props.actions.clearSelection();
   };
 
+  mapRecipeToRow = (recipe, index) => {
+    const { selectedRecipe } = this.props;
+
+    if (selectedRecipe && selectedRecipe.recipeId === recipe.recipeId) {
+      return <div key={index}>
+        <a className={'recipes-list-selected-item'} name={recipe.recipeId}>{recipe.recipeName}</a>
+      </div>;
+    }
+
+    return <div key={index}>
+      <a className={'recipes-list-item'} onClick={this.selectRecipe} name={recipe.recipeId}>{recipe.recipeName}</a>
+    </div>;
+  };
+
   render() {
     return (
       <div className="recipes-list">
         <span className="recipes-list-menu-title">Recipes</span>
         <button onClick={this.clearSelection}>Clear Selection</button>
         <div className="recipe-selection-menu">
-        {this.props.files.map((recipe, index) => 
-          <div key={index}>
-            <a className="recipes-list-item" onClick={this.selectRecipe} name={recipe.recipeId}>{recipe.recipeName}</a>
-          </div>
-        )}
+        {this.props.files.map((recipe, index) => this.mapRecipeToRow(recipe, index) )}
         </div>
       </div>
     );
