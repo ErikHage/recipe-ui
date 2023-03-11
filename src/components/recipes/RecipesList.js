@@ -21,6 +21,14 @@ class RecipesList extends Component {
     this.props.actions.clearSelection();
   };
 
+  collapseSidebar = () => {
+    this.props.actions.collapseSidebar();
+  };
+
+  expandSidebar = () => {
+    this.props.actions.expandSidebar();
+  };
+
   mapRecipeToRow = (recipe, index) => {
     const { selectedRecipe } = this.props;
 
@@ -36,19 +44,27 @@ class RecipesList extends Component {
   };
 
   render() {
-    return (
-      <div className="recipes-list">
-        <span className="recipes-list-menu-title">Recipes</span>
-        <button onClick={this.clearSelection}>Clear Selection</button>
-        <div className="recipe-selection-menu">
-        {this.props.files.map((recipe, index) => this.mapRecipeToRow(recipe, index) )}
-        </div>
+    if (this.props.sidebarCollapsed) {
+      return <div className="recipes-list-collapsed">
+        <button className="sidebar-toggle-button" onClick={this.expandSidebar}>&#187;</button>
       </div>
-    );
+    } else {
+      return (
+          <div className="recipes-list">
+            <button className="sidebar-toggle-button" onClick={this.collapseSidebar}>&#171;</button>
+            <span className="recipes-list-menu-title">Recipes</span>
+            <button onClick={this.clearSelection}>Clear Selection</button>
+            <div className="recipe-selection-menu">
+              {this.props.files.map((recipe, index) => this.mapRecipeToRow(recipe, index))}
+            </div>
+          </div>
+      );
+    }
   }
 }
 
-RecipesList.propTupes = {
+RecipesList.propTypes = {
+  sidebarCollapsed: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   files: PropTypes.array.isRequired,
   selectedRecipe: PropTypes.object.isRequired,
@@ -56,6 +72,7 @@ RecipesList.propTupes = {
 
 function mapStateToProps(state) {
   return {
+    sidebarCollapsed: state.recipes.sidebarCollapsed,
     files: state.recipes.files,
     selectedRecipe: state.recipes.selected,
     recipeCache: state.recipes.recipeCache,
@@ -65,6 +82,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
+      collapseSidebar: bindActionCreators(recipeActions.collapseSidebar, dispatch),
+      expandSidebar: bindActionCreators(recipeActions.expandSidebar, dispatch),
       loadSelectedRecipe: bindActionCreators(recipeActions.loadSelectedRecipe, dispatch),
       loadSelectedRecipeSuccess: bindActionCreators(recipeActions.loadSelectedRecipeSuccess, dispatch),
       clearSelection: bindActionCreators(recipeActions.clearSelection, dispatch),

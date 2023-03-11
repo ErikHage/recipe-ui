@@ -1,6 +1,7 @@
 import * as actions from '../actions/action-types';
 
 const initialState = {
+  sidebarCollapsed: false,
   files: [],
   recipeCache: {},
   selected: undefined,
@@ -8,6 +9,14 @@ const initialState = {
 
 export default function recipesReducer(state = initialState, action) {
   switch (action.type) {
+    case actions.COLLAPSE_SIDEBAR:
+      return Object.assign({}, state, {
+        sidebarCollapsed: true,
+      });
+    case actions.EXPAND_SIDEBAR:
+      return Object.assign({}, state, {
+        sidebarCollapsed: false,
+      });
     case actions.SELECT_RECIPE_SUCCESS:
       const recipeCache = {
         ...state.recipeCache

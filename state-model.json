@@ -1,5 +1,6 @@
 {
   "recipes": {
+    "sidebarCollapsed": "Boolean - is the sidebar minimized",
     "message": "message to display",
     "files": [
       {

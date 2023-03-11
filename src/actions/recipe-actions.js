@@ -3,6 +3,18 @@ import {toastr} from 'react-redux-toastr';
 import recipesService from '../services/recipes';
 import * as actions from './action-types';
 
+export function collapseSidebar() {
+  return {
+    type: actions.COLLAPSE_SIDEBAR,
+  };
+}
+
+export function expandSidebar() {
+  return {
+    type: actions.EXPAND_SIDEBAR,
+  };
+}
+
 export function loadSelectedRecipeSuccess(recipe, recipeId) {
   return {
     type: actions.SELECT_RECIPE_SUCCESS,

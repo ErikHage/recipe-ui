@@ -31,12 +31,30 @@ body {
   width: 100%;
 }
 
+.sidebar-toggle-button {
+  display: flex;
+  align-self: flex-end;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+}
+
 .recipes-list {
   display: flex;
   flex-direction: column;
   height: 100%;
   background: black;
   flex: 1 1 auto;
+  color: white;
+}
+
+.recipes-list-collapsed {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: black;
+  flex: 0 1 auto;
   color: white;
 }
 
