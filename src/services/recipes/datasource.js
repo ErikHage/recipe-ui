@@ -4,7 +4,7 @@ import request from 'superagent';
 
 const getRecipes = async () => {
   const { body } = await request
-  .get('http://theferalrooster.com/api/recipes-service/recipes')
+  .get('https://theferalrooster.com/api/recipes-service/recipes')
   .accept('application/json');
 
   return body;
@@ -12,7 +12,7 @@ const getRecipes = async () => {
 
 const getRecipe = async (recipeId) => {
   const { body } = await request
-  .get(`http://theferalrooster.com/api/recipes-service/recipes/${recipeId}`)
+  .get(`https://theferalrooster.com/api/recipes-service/recipes/${recipeId}`)
   .accept('application/json');
 
   return body;
