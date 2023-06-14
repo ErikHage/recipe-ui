@@ -8,27 +8,12 @@ $(document).ready(function() {
 
     ingredientIndex = ingredientIndex + 1;
 
-    // bootstrap layout
-    // const newHTML = `
-    //   <div class="form-group">
-    //     <p>Ingredient ${(ingredientIndex)}</p>
-    //     <label for="ingredientName${ingredientIndex}">Name</label>
-    //     <input type="text" class="form-control" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}">
-    //     <label for="quantityKind${ingredientIndex}">Quantity Kind</label>
-    //     <input type="text" class="form-control" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}">
-    //     <label for="quantityValue${ingredientIndex}">Quantity Value</label>
-    //     <input type="number" class="form-control" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}">
-    //     <label for="notes${ingredientIndex}">Notes</label>
-    //     <input type="text" class="form-control" name="notes${ingredientIndex}" id="notes${ingredientIndex}">
-    //   </div>
-    // `;
-
     const newHTML = `
     <tr>
-      <td><input style="display:table-cell; width:100%" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}"></td>
-      <td><input style="display:table-cell; width:100%" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}"></td>
-      <td><input style="display:table-cell; width:100%" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}"></td>
-      <td><input style="display:table-cell; width:100%" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}"></td>
     </tr>
   `;
 
@@ -41,8 +26,12 @@ $(document).ready(function() {
     stepIndex = stepIndex + 1;
 
     const newHTML = `
-      <label for="stepText${stepIndex}" class="fb-text-label">Step ${(stepIndex)}</label>
-      <input type="text" class="form-control" name="stepText${stepIndex}" id="stepText${stepIndex}">
+      <div class="row">
+        <label for="stepText${stepIndex}" class="col-1">Step ${(stepIndex)}</label>
+        <div class="col-11">
+          <input type="text" class="form-control" name="stepText${stepIndex}" id="stepText${stepIndex}">
+        </div>
+      </div>
     `;
 
     stepsDiv.append($.parseHTML(newHTML));
