@@ -15,6 +15,21 @@
     <div class="col-12">
       <h2 class="text-center">Recipe to JSON Tool</h2>
       <hr />
+      <form id="fileLoadForm">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6 text-center">
+            <div class="input-group">
+              <button class="btn btn-outline-secondary btn-sm" type="button"
+                      id="loadFileButton">Load</button>
+              <input type="file" class="form-control form-control-sm" id="loadFileInput"
+                     accept="application/json">
+            </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </form>
+      <hr />
 
       <form id="recipeForm">
         <div class="row">
@@ -132,7 +147,7 @@
     </div>
   </div>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="js/main.js"></script>
 </div>
 </body>

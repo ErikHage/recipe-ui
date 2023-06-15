@@ -1,42 +1,57 @@
 $(document).ready(function() {
 
+  let currentJson = {};
+
   let ingredientIndex = 0;
   let stepIndex = 0;
 
-  const stepsDiv = $('#steps');
+  const loadFileInput = $('#loadFileInput');
   const ingredientsTBody = $('#ingredients');
+  const stepsDiv = $('#steps');
 
   function addIngredient() {
     ingredientIndex = ingredientIndex + 1;
-
     const newIngredientRowHtml = getIngredientRowHtml(ingredientIndex);
-
     ingredientsTBody.append($.parseHTML(newIngredientRowHtml));
   }
 
   function addStep() {
     stepIndex = stepIndex + 1;
-
     const newStepRowHtml = getStepRowHtml(stepIndex);
-
     stepsDiv.append($.parseHTML(newStepRowHtml));
   }
-  
-  const addIngredientButton = $('#addIngredientButton');
-  const addStepButton = $('#addStepButton');
-  const toJsonButton = $('#toJsonButton');
 
-  addIngredientButton.click(function(e) {
+  $('#loadFileButton').click(function(e) {
+    e.preventDefault();
+    const file = loadFileInput[0].files[0];
+
+    if (!file || file.type !== "application/json") {
+      alert('Please select a valid JSON file.');
+      return;
+    }
+    console.log('selected file: ' + file.name);
+
+    const fileReader = new FileReader();
+    fileReader.onload = function(e) {
+      const contents = e.target.result;
+      currentJson = JSON.parse(contents);
+      console.log("loaded data: " + JSON.stringify(currentJson));
+      populateInputsFromCurrentJson();
+    }
+    fileReader.readAsText(file);
+  });
+
+  $('#addIngredientButton').click(function(e) {
     e.preventDefault();
     addIngredient();
   });
 
-  addStepButton.click(function(e) {
+  $('#addStepButton').click(function(e) {
     e.preventDefault();
     addStep();
   });
 
-  toJsonButton.click(function(e) {
+  $('#toJsonButton').click(function(e) {
     e.preventDefault();
 
     const recipeId = $('#recipeId').val();
@@ -81,7 +96,7 @@ $(document).ready(function() {
       steps.push(step);
     }
 
-    const json = {
+    currentJson = {
       recipeId,
       recipeName,
       prep: {
@@ -108,8 +123,27 @@ $(document).ready(function() {
       },
     };
 
-    $('#outputTextBox').val(JSON.stringify(json, null, 2));
+    $('#outputTextBox').val(JSON.stringify(currentJson, null, 2));
   });
+
+  function populateInputsFromCurrentJson() {
+    $('#recipeId').val(currentJson.recipeId);
+    $('#recipeName').val(currentJson.recipeName);
+    $('#keywords').val(currentJson.keywords?.join(","));
+    $('#prepTimeKind').val(currentJson.prep.kind);
+    $('#prepTimeValue').val(currentJson.prep.value);
+    $('#cookTimeKind').val(currentJson.cook.kind);
+    $('#cookTimeValue').val(currentJson.cook.value);
+    $('#yieldKind').val(currentJson.yield.kind);
+    $('#yieldValue').val(currentJson.yield.value);
+    $('#calories').val(currentJson?.nutrition?.calories);
+    $('#fats').val(currentJson?.nutrition?.fats);
+    $('#carbohydrates').val(currentJson?.nutrition?.carbohydrates);
+    $('#sugars').val(currentJson?.nutrition?.sugars);
+    $('#protein').val(currentJson?.nutrition?.protein);
+
+
+  }
 });
 
 function getIngredientRowHtml(ingredientIndex) {
