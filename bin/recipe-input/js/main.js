@@ -9,15 +9,15 @@ $(document).ready(function() {
   const ingredientsTBody = $('#ingredients');
   const stepsDiv = $('#steps');
 
-  function addIngredient() {
+  function addIngredient(ingredient) {
     ingredientIndex = ingredientIndex + 1;
-    const newIngredientRowHtml = getIngredientRowHtml(ingredientIndex);
+    const newIngredientRowHtml = getIngredientRowHtml(ingredientIndex, ingredient);
     ingredientsTBody.append($.parseHTML(newIngredientRowHtml));
   }
 
-  function addStep() {
+  function addStep(step) {
     stepIndex = stepIndex + 1;
-    const newStepRowHtml = getStepRowHtml(stepIndex);
+    const newStepRowHtml = getStepRowHtml(stepIndex, step);
     stepsDiv.append($.parseHTML(newStepRowHtml));
   }
 
@@ -30,6 +30,7 @@ $(document).ready(function() {
       return;
     }
     console.log('selected file: ' + file.name);
+    clearForm();
 
     const fileReader = new FileReader();
     fileReader.onload = function(e) {
@@ -142,27 +143,80 @@ $(document).ready(function() {
     $('#sugars').val(currentJson?.nutrition?.sugars);
     $('#protein').val(currentJson?.nutrition?.protein);
 
+    for (let i = 0; i < currentJson.ingredients.length; i++) {
+      const ingredient = currentJson.ingredients[i];
+      addIngredient(ingredient);
+    }
 
+    for (let i = 0; i < currentJson.steps.length; i++) {
+      const step = currentJson.steps[i];
+      addStep(step);
+    }
+  }
+
+  function clearForm() {
+    // blank out fields
+    $('#recipeId').val('');
+    $('#recipeName').val('');
+    $('#keywords').val('');
+    $('#prepTimeKind').val('');
+    $('#prepTimeValue').val('');
+    $('#cookTimeKind').val('');
+    $('#cookTimeValue').val('');
+    $('#yieldKind').val('');
+    $('#yieldValue').val('');
+    $('#calories').val('');
+    $('#fats').val('');
+    $('#carbohydrates').val('');
+    $('#sugars').val('');
+    $('#protein').val('');
+
+    // remove ingredients and steps
+    ingredientsTBody.empty();
+    stepsDiv.empty();
+
+    // reset state variables
+    ingredientIndex = 0;
+    stepIndex = 0;
+    currentJson = {};
   }
 });
 
-function getIngredientRowHtml(ingredientIndex) {
+function getIngredientRowHtml(ingredientIndex, ingredient) {
+  let name = '';
+  let quantityKind = '';
+  let quantityValue = '';
+  let notes = '';
+
+  if (ingredient) {
+    name = ingredient.name;
+    quantityKind = ingredient.quantity.kind;
+    quantityValue = ingredient.quantity.value;
+    notes = ingredient.notes;
+  }
+
   return `
     <tr>
-      <td><input class="ingredient-row" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}"></td>
-      <td><input class="ingredient-row" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}"></td>
-      <td><input class="ingredient-row" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}"></td>
-      <td><input class="ingredient-row" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}" value="${name}"></td>
+      <td><input class="ingredient-row" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}" value="${quantityValue}"></td>
+      <td><input class="ingredient-row" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}" value="${quantityKind}"></td>
+      <td><input class="ingredient-row" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}" value="${notes}"></td>
     </tr>
   `;
 }
 
-function getStepRowHtml(stepIndex) {
+function getStepRowHtml(stepIndex, step) {
+  let stepText = '';
+
+  if (step) {
+    stepText = step.text;
+  }
+
   return `
       <div class="row">
         <label for="stepText${stepIndex}" class="col-1">Step ${(stepIndex)}</label>
         <div class="col-11">
-          <input type="text" class="form-control" name="stepText${stepIndex}" id="stepText${stepIndex}">
+          <input type="text" class="form-control" name="stepText${stepIndex}" id="stepText${stepIndex}" value="${stepText}">
         </div>
       </div>  
   `;
