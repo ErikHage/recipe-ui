@@ -10,126 +10,131 @@
 </head>
 
 <body>
-  <h3>Enter a recipe</h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center">Recipe to JSON Tool</h2>
+      <hr />
 
-  <form id="recipeForm">
-    <div class="row">
-      <div class="col-4">
-        <h4>Details</h4>
-        <label for="recipeId" class="">Recipe Id</label>
-        <input type="text" class="form-control" name="recipeId" id="recipeId">
-
-        <label for="recipeName" class="">Recipe Name</label>
-        <input type="text" class="form-control" name="recipeName" id="recipeName">
-
-        <label for="keywords" class="">Keywords (comma separated)</label>
-        <input type="text" class="form-control" name="keywords" id="keywords">
-
+      <form id="recipeForm">
         <div class="row">
-          <label for="prepTimeKind" class="col-2">Prep</label>
-          <div class="col-3">
-            <input type="number" class="form-control" name="prepTimeValue" id="prepTimeValue" placeholder="value">
-          </div>
-          <div class="col-7">
-            <input type="text" class="form-control" name="prepTimeKind" id="prepTimeKind" placeholder="kind (minutes/hours)">
-          </div>
-        </div>
+          <div class="col-4">
+            <h4>Details</h4>
+            <label for="recipeId" class="">Recipe Id</label>
+            <input type="text" class="form-control" name="recipeId" id="recipeId">
 
-        <div class="row">
-          <label for="cookTimeKind" class="col-2">Cook</label>
-          <div class="col-3">
-            <input type="number" class="form-control" name="cookTimeValue" id="cookTimeValue" placeholder="value">
-          </div>
-          <div class="col-7">
-            <input type="text" class="form-control" name="cookTimeKind" id="cookTimeKind" placeholder="kind (minutes/hours)">
-          </div>
-        </div>
+            <label for="recipeName" class="">Recipe Name</label>
+            <input type="text" class="form-control" name="recipeName" id="recipeName">
 
-        <div class="row">
-          <label for="yieldKind" class="col-2">Yield</label>
-          <div class="col-3">
-            <input type="number" class="form-control" name="yieldValue" id="yieldValue" placeholder="value">
-          </div>
-          <div class="col-7">
-            <input type="text" class="form-control" name="yieldKind" id="yieldKind" placeholder="kind (servings/pieces)">
-          </div>
-        </div>
+            <label for="keywords" class="">Keywords (comma separated)</label>
+            <input type="text" class="form-control" name="keywords" id="keywords">
 
-        <h4>Nutrition</h4>
-        <div class="row">
-          <label for="calories" class="col-4">Calories</label>
+            <div class="row">
+              <label for="prepTimeKind" class="col-2">Prep</label>
+              <div class="col-3">
+                <input type="number" class="form-control" name="prepTimeValue" id="prepTimeValue" placeholder="value">
+              </div>
+              <div class="col-7">
+                <input type="text" class="form-control" name="prepTimeKind" id="prepTimeKind" placeholder="kind (minutes/hours)">
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="cookTimeKind" class="col-2">Cook</label>
+              <div class="col-3">
+                <input type="number" class="form-control" name="cookTimeValue" id="cookTimeValue" placeholder="value">
+              </div>
+              <div class="col-7">
+                <input type="text" class="form-control" name="cookTimeKind" id="cookTimeKind" placeholder="kind (minutes/hours)">
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="yieldKind" class="col-2">Yield</label>
+              <div class="col-3">
+                <input type="number" class="form-control" name="yieldValue" id="yieldValue" placeholder="value">
+              </div>
+              <div class="col-7">
+                <input type="text" class="form-control" name="yieldKind" id="yieldKind" placeholder="kind (servings/pieces)">
+              </div>
+            </div>
+
+            <h4>Nutrition</h4>
+            <div class="row">
+              <label for="calories" class="col-4">Calories</label>
+              <div class="col-8">
+                <input type="number" class="form-control" name="calories" id="calories">
+              </div>
+            </div>
+            <div class="row">
+              <label for="fats" class="col-4">Fats (g)</label>
+              <div class="col-8">
+                <input type="number" class="form-control" name="fats" id="fats">
+              </div>
+            </div>
+            <div class="row">
+              <label for="carbohydrates" class="col-4">Carbohydrates (g)</label>
+              <div class="col-8">
+                <input type="number" class="form-control" name="carbohydrates" id="carbohydrates">
+              </div>
+            </div>
+            <div class="row">
+              <label for="sugars" class="col-4">Sugars (g)</label>
+              <div class="col-8">
+                <input type="number" class="form-control" name="sugars" id="sugars">
+              </div>
+            </div>
+            <div class="row">
+              <label for="protein" class="col-4">Protein (g)</label>
+              <div class="col-8">
+                <input type="number" class="form-control" name="protein" id="protein">
+              </div>
+            </div>
+          </div>
+
           <div class="col-8">
-            <input type="number" class="form-control" name="calories" id="calories">
-          </div>
-        </div>
-        <div class="row">
-          <label for="fats" class="col-4">Fats (g)</label>
-          <div class="col-8">
-            <input type="number" class="form-control" name="fats" id="fats">
-          </div>
-        </div>
-        <div class="row">
-          <label for="carbohydrates" class="col-4">Carbohydrates (g)</label>
-          <div class="col-8">
-            <input type="number" class="form-control" name="carbohydrates" id="carbohydrates">
-          </div>
-        </div>
-        <div class="row">
-          <label for="sugars" class="col-4">Sugars (g)</label>
-          <div class="col-8">
-            <input type="number" class="form-control" name="sugars" id="sugars">
-          </div>
-        </div>
-        <div class="row">
-          <label for="protein" class="col-4">Protein (g)</label>
-          <div class="col-8">
-            <input type="number" class="form-control" name="protein" id="protein">
-          </div>
-        </div>
-      </div>
+            <h4>Ingredients</h4>
+            <table style="width: 100%">
+              <colgroup>
+                <col span="1" style="width: 25%;">
+                <col span="1" style="width: 5%;">
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 55%;">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Qty</th>
+                  <th>Qty Kind</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="ingredients">
 
-      <div class="col-8">
-        <h4>Ingredients</h4>
-        <table style="width: 100%">
-          <colgroup>
-            <col span="1" style="width: 25%;">
-            <col span="1" style="width: 5%;">
-            <col span="1" style="width: 15%;">
-            <col span="1" style="width: 55%;">
-          </colgroup>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Qty</th>
-              <th>Qty Kind</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody id="ingredients">
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-success" id="addIngredientButton">Add Ingredient</button>
+          </div>
+        </div>
 
-          </tbody>
-        </table>
-        <button id="addIngredientButton">Add Ingredient</button>
-      </div>
+        <div class="row">
+          <div class="col-12">
+            <h4>Steps</h4>
+            <div id="steps" class="form-group"></div>
+            <button type="button" class="btn btn-success" id="addStepButton">Add Step</button>
+          </div>
+        </div>
+      </form>
+      <br />
+      <button type="button" class="btn btn-primary" id="toJsonButton">Convert to JSON</button>
+      <br /> <br />
+      <textarea id="outputTextBox" rows="100" cols="200"></textarea>
     </div>
-
-    <div class="row">
-      <div class="col-12">
-        <h4>Steps</h4>
-        <div id="steps" class="form-group"></div>
-        <button id="addStepButton">Add Step</button>
-      </div>
-    </div>
-  </form>
-
-  <br /><br />
-  <button id="toJsonButton">Convert to JSON</button>
-  <br /><br /><br />
-
-  <textarea id="outputTextBox" rows="100" cols="200"></textarea>
+  </div>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="js/main.js"></script>
+</div>
 </body>
 
 </html>

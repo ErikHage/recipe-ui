@@ -3,38 +3,23 @@ $(document).ready(function() {
   let ingredientIndex = 0;
   let stepIndex = 0;
 
-  function addIngredient() {
-    const ingredientsTBody = $('#ingredients');
+  const stepsDiv = $('#steps');
+  const ingredientsTBody = $('#ingredients');
 
+  function addIngredient() {
     ingredientIndex = ingredientIndex + 1;
 
-    const newHTML = `
-    <tr>
-      <td><input class="ingredient-row" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}"></td>
-      <td><input class="ingredient-row" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}"></td>
-      <td><input class="ingredient-row" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}"></td>
-      <td><input class="ingredient-row" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}"></td>
-    </tr>
-  `;
+    const newIngredientRowHtml = getIngredientRowHtml(ingredientIndex);
 
-    ingredientsTBody.append($.parseHTML(newHTML));
+    ingredientsTBody.append($.parseHTML(newIngredientRowHtml));
   }
 
   function addStep() {
-    const stepsDiv = $('#steps');
-
     stepIndex = stepIndex + 1;
 
-    const newHTML = `
-      <div class="row">
-        <label for="stepText${stepIndex}" class="col-1">Step ${(stepIndex)}</label>
-        <div class="col-11">
-          <input type="text" class="form-control" name="stepText${stepIndex}" id="stepText${stepIndex}">
-        </div>
-      </div>
-    `;
+    const newStepRowHtml = getStepRowHtml(stepIndex);
 
-    stepsDiv.append($.parseHTML(newHTML));
+    stepsDiv.append($.parseHTML(newStepRowHtml));
   }
   
   const addIngredientButton = $('#addIngredientButton');
@@ -126,3 +111,25 @@ $(document).ready(function() {
     $('#outputTextBox').val(JSON.stringify(json, null, 2));
   });
 });
+
+function getIngredientRowHtml(ingredientIndex) {
+  return `
+    <tr>
+      <td><input class="ingredient-row" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}"></td>
+      <td><input class="ingredient-row" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}"></td>
+    </tr>
+  `;
+}
+
+function getStepRowHtml(stepIndex) {
+  return `
+      <div class="row">
+        <label for="stepText${stepIndex}" class="col-1">Step ${(stepIndex)}</label>
+        <div class="col-11">
+          <input type="text" class="form-control" name="stepText${stepIndex}" id="stepText${stepIndex}">
+        </div>
+      </div>  
+  `;
+}
