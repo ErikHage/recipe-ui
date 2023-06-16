@@ -89,10 +89,15 @@ $(document).ready(function() {
       ingredients.push(ingredient);
     }
 
-    for (let i = 1; i <= stepIndex; i++) {
-      const step = {};
-      step.id = i;
-      step.text = $(`#stepText${i}`).val();
+    const stepTexts = $('.step-text');
+    console.log(stepTexts);
+
+    for (let i = 0; i < stepTexts.length; i++) {
+      console.log(`${i}: ` + stepTexts[i].value);
+      const step = {
+        id: i,
+        text: stepTexts[i].value,
+      };
 
       steps.push(step);
     }
@@ -216,10 +221,13 @@ $(document).ready(function() {
     }
 
     return `
-      <div class="row">
-        <label for="stepText${rowIndex}" class="col-1">Step ${(rowIndex)}</label>
+      <div class="row step-row" id="step${rowIndex}" style="padding-top: 10px;">
         <div class="col-11">
-          <input type="text" class="form-control" name="stepText${rowIndex}" id="stepText${rowIndex}" value="${stepText}">
+          <input type="text" class="form-control step-text" name="stepText${rowIndex}" id="stepText${rowIndex}" value="${stepText}">
+        </div>
+        <div class="col-1">
+           <input class="btn btn-sm btn-danger" type="button" name="stepDeleteButton${rowIndex}" id="stepDeleteButton${rowIndex}" 
+             value="X" onclick="deleteStepRowByIndex(${rowIndex})"/>
         </div>
       </div>  
   `;
@@ -228,4 +236,8 @@ $(document).ready(function() {
 
 function deleteIngredientRowByIndex(rowIndex) {
   document.getElementById(`ingredient${rowIndex}`).remove();
+}
+
+function deleteStepRowByIndex(rowIndex) {
+  document.getElementById(`step${rowIndex}`).remove();
 }
