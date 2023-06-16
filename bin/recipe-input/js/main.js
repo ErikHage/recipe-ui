@@ -180,44 +180,52 @@ $(document).ready(function() {
     stepIndex = 0;
     currentJson = {};
   }
-});
 
-function getIngredientRowHtml(ingredientIndex, ingredient) {
-  let name = '';
-  let quantityKind = '';
-  let quantityValue = '';
-  let notes = '';
+  function getIngredientRowHtml(rowIndex, ingredient) {
+    let name = '';
+    let quantityKind = '';
+    let quantityValue = '';
+    let notes = '';
 
-  if (ingredient) {
-    name = ingredient.name;
-    quantityKind = ingredient.quantity.kind;
-    quantityValue = ingredient.quantity.value;
-    notes = ingredient.notes;
-  }
+    if (ingredient) {
+      name = ingredient.name;
+      quantityKind = ingredient.quantity.kind;
+      quantityValue = ingredient.quantity.value;
+      notes = ingredient.notes;
+    }
 
-  return `
-    <tr>
-      <td><input class="ingredient-row" type="text" name="ingredientName${ingredientIndex}" id="ingredientName${ingredientIndex}" value="${name}"></td>
-      <td><input class="ingredient-row" type="number" name="quantityValue${ingredientIndex}" id="quantityValue${ingredientIndex}" value="${quantityValue}"></td>
-      <td><input class="ingredient-row" type="text" name="quantityKind${ingredientIndex}" id="quantityKind${ingredientIndex}" value="${quantityKind}"></td>
-      <td><input class="ingredient-row" type="text" name="notes${ingredientIndex}" id="notes${ingredientIndex}" value="${notes}"></td>
+    return `
+    <tr id="ingredient${rowIndex}">
+      <td><input class="ingredient-row" type="text" name="ingredientName${rowIndex}" id="ingredientName${rowIndex}" value="${name}"></td>
+      <td><input class="ingredient-row" type="number" name="quantityValue${rowIndex}" id="quantityValue${rowIndex}" value="${quantityValue}"></td>
+      <td><input class="ingredient-row" type="text" name="quantityKind${rowIndex}" id="quantityKind${rowIndex}" value="${quantityKind}"></td>
+      <td><input class="ingredient-row" type="text" name="notes${rowIndex}" id="notes${rowIndex}" value="${notes}"></td>
+      <td>
+        <input class="ingredient-row btn btn-sm btn-danger" type="button" name="ingredientDeleteButton${rowIndex}" id="ingredientDeleteButton${rowIndex}" 
+           value="X" onclick="deleteIngredientRowByIndex(${rowIndex})"/>
+      </td>
     </tr>
   `;
-}
-
-function getStepRowHtml(stepIndex, step) {
-  let stepText = '';
-
-  if (step) {
-    stepText = step.text;
   }
 
-  return `
+  function getStepRowHtml(rowIndex, step) {
+    let stepText = '';
+
+    if (step) {
+      stepText = step.text;
+    }
+
+    return `
       <div class="row">
-        <label for="stepText${stepIndex}" class="col-1">Step ${(stepIndex)}</label>
+        <label for="stepText${rowIndex}" class="col-1">Step ${(rowIndex)}</label>
         <div class="col-11">
-          <input type="text" class="form-control" name="stepText${stepIndex}" id="stepText${stepIndex}" value="${stepText}">
+          <input type="text" class="form-control" name="stepText${rowIndex}" id="stepText${rowIndex}" value="${stepText}">
         </div>
       </div>  
   `;
+  }
+});
+
+function deleteIngredientRowByIndex(rowIndex) {
+  document.getElementById(`ingredient${rowIndex}`).remove();
 }
