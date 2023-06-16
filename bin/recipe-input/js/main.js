@@ -77,29 +77,30 @@ $(document).ready(function() {
     const ingredients = [];
     const steps = [];
 
-    for (let i = 1; i <= ingredientIndex; i++) {
+    $('.ingredient-table-row').each(function() {
+      const name = $(this).find('.ingredient-name').val();
+      const qKind = $(this).find('.ingredient-qty-kind').val();
+      const qVal = $(this).find('.ingredient-qty-val').val();
+      const notes = $(this).find('.ingredient-notes').val();
+
       const ingredient = {
-        quantity: {},
+        name,
+        quantity: {
+          kind: qKind,
+          value: qVal,
+        },
+        notes,
       };
-      ingredient.name = $(`#ingredientName${i}`).val();
-      ingredient.quantity.kind = $(`#quantityKind${i}`).val();
-      ingredient.quantity.value = Number($(`#quantityValue${i}`).val());
-      ingredient.notes = $(`#notes${i}`).val();
 
       ingredients.push(ingredient);
-    }
+    });
 
     const stepTexts = $('.step-text');
-    console.log(stepTexts);
-
     for (let i = 0; i < stepTexts.length; i++) {
-      console.log(`${i}: ` + stepTexts[i].value);
-      const step = {
+      steps.push({
         id: i,
         text: stepTexts[i].value,
-      };
-
-      steps.push(step);
+      });
     }
 
     currentJson = {
@@ -200,11 +201,11 @@ $(document).ready(function() {
     }
 
     return `
-    <tr id="ingredient${rowIndex}">
-      <td><input class="ingredient-row" type="text" name="ingredientName${rowIndex}" id="ingredientName${rowIndex}" value="${name}"></td>
-      <td><input class="ingredient-row" type="number" name="quantityValue${rowIndex}" id="quantityValue${rowIndex}" value="${quantityValue}"></td>
-      <td><input class="ingredient-row" type="text" name="quantityKind${rowIndex}" id="quantityKind${rowIndex}" value="${quantityKind}"></td>
-      <td><input class="ingredient-row" type="text" name="notes${rowIndex}" id="notes${rowIndex}" value="${notes}"></td>
+    <tr id="ingredient${rowIndex}" class="ingredient-table-row">
+      <td><input class="ingredient-row ingredient-name" type="text" name="ingredientName${rowIndex}" id="ingredientName${rowIndex}" value="${name}"></td>
+      <td><input class="ingredient-row ingredient-qty-val" type="number" name="quantityValue${rowIndex}" id="quantityValue${rowIndex}" value="${quantityValue}"></td>
+      <td><input class="ingredient-row ingredient-qty-kind" type="text" name="quantityKind${rowIndex}" id="quantityKind${rowIndex}" value="${quantityKind}"></td>
+      <td><input class="ingredient-row ingredient-notes" type="text" name="notes${rowIndex}" id="notes${rowIndex}" value="${notes}"></td>
       <td>
         <input class="ingredient-row btn btn-sm btn-danger" type="button" name="ingredientDeleteButton${rowIndex}" id="ingredientDeleteButton${rowIndex}" 
            value="X" onclick="deleteIngredientRowByIndex(${rowIndex})"/>
