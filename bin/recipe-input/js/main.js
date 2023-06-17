@@ -131,6 +131,9 @@ $(document).ready(function() {
     };
 
     $('#outputTextBox').val(JSON.stringify(currentJson, null, 2));
+
+    // go to output tab
+    
   });
 
   function populateInputsFromCurrentJson() {
@@ -242,3 +245,13 @@ function deleteIngredientRowByIndex(rowIndex) {
 function deleteStepRowByIndex(rowIndex) {
   document.getElementById(`step${rowIndex}`).remove();
 }
+
+const triggerTabList = document.querySelectorAll('#myTab button')
+triggerTabList.forEach(triggerEl => {
+  const tabTrigger = new bootstrap.Tab(triggerEl);
+
+  triggerEl.addEventListener('click', event => {
+    event.preventDefault();
+    tabTrigger.show();
+  });
+});
