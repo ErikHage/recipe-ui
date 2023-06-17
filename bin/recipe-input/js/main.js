@@ -133,7 +133,10 @@ $(document).ready(function() {
     $('#outputTextBox').val(JSON.stringify(currentJson, null, 2));
 
     // go to output tab
-    
+    $('#inputTabPane').removeClass('show active');
+    $('#inputTab').removeClass('active');
+    $('#outputTabPane').addClass('show active');
+    $('#outputTab').addClass('active');
   });
 
   function populateInputsFromCurrentJson() {
