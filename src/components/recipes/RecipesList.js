@@ -21,12 +21,12 @@ class RecipesList extends Component {
     this.props.actions.clearSelection();
   };
 
-  collapseSidebar = () => {
-    this.props.actions.collapseSidebar();
-  };
-
-  expandSidebar = () => {
-    this.props.actions.expandSidebar();
+  toggleSidebar = () => {
+    if (this.props.sidebarCollapsed) {
+      this.props.actions.expandSidebar();
+    } else {
+      this.props.actions.collapseSidebar();
+    }
   };
 
   mapRecipeToRow = (recipe, index) => {
@@ -45,13 +45,10 @@ class RecipesList extends Component {
 
   render() {
     if (this.props.sidebarCollapsed) {
-      return <div className="recipes-list-collapsed">
-        <button className="sidebar-toggle-button" onClick={this.expandSidebar}>&#187;</button>
-      </div>
+      return <div className="recipes-list-collapsed"></div>
     } else {
       return (
           <div className="recipes-list">
-            <button className="sidebar-toggle-button" onClick={this.collapseSidebar}>&#171;</button>
             <span className="recipes-list-menu-title">Recipes</span>
             <button onClick={this.clearSelection}>Clear Selection</button>
             <div className="recipe-selection-menu">
@@ -82,8 +79,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      collapseSidebar: bindActionCreators(recipeActions.collapseSidebar, dispatch),
-      expandSidebar: bindActionCreators(recipeActions.expandSidebar, dispatch),
       loadSelectedRecipe: bindActionCreators(recipeActions.loadSelectedRecipe, dispatch),
       loadSelectedRecipeSuccess: bindActionCreators(recipeActions.loadSelectedRecipeSuccess, dispatch),
       clearSelection: bindActionCreators(recipeActions.clearSelection, dispatch),

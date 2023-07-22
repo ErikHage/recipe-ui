@@ -33,7 +33,7 @@ body {
 
 .sidebar-toggle-button {
   display: flex;
-  align-self: flex-end;
+  align-self: flex-start;
   background-color: black;
   color: white;
   font-weight: bold;
