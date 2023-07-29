@@ -15,6 +15,13 @@ export function expandSidebar() {
   };
 }
 
+export function updateRecipesFilter(filterString) {
+  return {
+    type: actions.UPDATE_RECIPES_FILTER,
+    filterString,
+  };
+}
+
 export function loadSelectedRecipeSuccess(recipe, recipeId) {
   return {
     type: actions.SELECT_RECIPE_SUCCESS,

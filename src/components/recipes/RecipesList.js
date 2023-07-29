@@ -21,12 +21,19 @@ class RecipesList extends Component {
     this.props.actions.clearSelection();
   };
 
-  toggleSidebar = () => {
-    if (this.props.sidebarCollapsed) {
-      this.props.actions.expandSidebar();
-    } else {
-      this.props.actions.collapseSidebar();
-    }
+  updateRecipesFilter = (event) => {
+    this.props.actions.updateRecipesFilter(event.target.value);
+  };
+
+  mapRecipesToRows = (files, filterString) => {
+    console.log(`in mapRecipesToRows, filter string is ${filterString}`);
+    return files
+        .filter(recipe => {
+          return filterString
+              ? recipe.recipeName.toLowerCase().includes(filterString.toLowerCase())
+              : true;
+        })
+        .map((recipe, index) => this.mapRecipeToRow(recipe, index))
   };
 
   mapRecipeToRow = (recipe, index) => {
@@ -50,9 +57,11 @@ class RecipesList extends Component {
       return (
           <div className="recipes-list">
             <span className="recipes-list-menu-title">Recipes</span>
+            <input type="search" onChange={this.updateRecipesFilter} placeholder="filter" />
             <button onClick={this.clearSelection}>Clear Selection</button>
+
             <div className="recipe-selection-menu">
-              {this.props.files.map((recipe, index) => this.mapRecipeToRow(recipe, index))}
+              {this.mapRecipesToRows(this.props.files, this.props.filterString)}
             </div>
           </div>
       );
@@ -64,7 +73,8 @@ RecipesList.propTypes = {
   sidebarCollapsed: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   files: PropTypes.array.isRequired,
-  selectedRecipe: PropTypes.object.isRequired,
+  selectedRecipe: PropTypes.object,
+  filterString: PropTypes.string,
 };
 
 function mapStateToProps(state) {
@@ -73,6 +83,7 @@ function mapStateToProps(state) {
     files: state.recipes.files,
     selectedRecipe: state.recipes.selected,
     recipeCache: state.recipes.recipeCache,
+    filterString: state.recipes.filterString,
   };
 }
 
@@ -82,6 +93,7 @@ function mapDispatchToProps(dispatch) {
       loadSelectedRecipe: bindActionCreators(recipeActions.loadSelectedRecipe, dispatch),
       loadSelectedRecipeSuccess: bindActionCreators(recipeActions.loadSelectedRecipeSuccess, dispatch),
       clearSelection: bindActionCreators(recipeActions.clearSelection, dispatch),
+      updateRecipesFilter: bindActionCreators(recipeActions.updateRecipesFilter, dispatch)
     },
   };
 }

@@ -5,6 +5,7 @@ const initialState = {
   files: [],
   recipeCache: {},
   selected: undefined,
+  filterString: undefined,
 };
 
 export default function recipesReducer(state = initialState, action) {
@@ -16,6 +17,11 @@ export default function recipesReducer(state = initialState, action) {
     case actions.EXPAND_SIDEBAR:
       return Object.assign({}, state, {
         sidebarCollapsed: false,
+      });
+    case actions.UPDATE_RECIPES_FILTER:
+      console.log(`in UPDATE_RECIPES_FILTER, filterString: ${action.filterString}`);
+      return Object.assign({}, state, {
+        filterString: action.filterString,
       });
     case actions.SELECT_RECIPE_SUCCESS:
       const recipeCache = {

@@ -27,7 +27,7 @@ class RecipesPage extends Component {
   }
 }
 
-RecipesPage.propTupes = {
+RecipesPage.propTypes = {
   actions: PropTypes.object.isRequired,
   files: PropTypes.array.isRequired,
 };
