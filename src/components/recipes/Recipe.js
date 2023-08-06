@@ -40,7 +40,7 @@ class Recipe extends Component {
     return (
       <div className="recipe-content">
         { this.renderListToggleButton() }
-        <RecipeHeader recipeName={recipe.recipeName} />
+        <RecipeHeader recipeName={recipe.recipeName} keywords={recipe.keywords} />
         <RecipeStats prep={recipe.prep} cook={recipe.cook} yield={recipe.yield} />
         <IngredientsSection ingredients={recipe.ingredients} />
         <StepsSection steps={recipe.steps} />

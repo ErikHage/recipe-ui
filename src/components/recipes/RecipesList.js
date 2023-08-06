@@ -30,7 +30,7 @@ class RecipesList extends Component {
     return files
         .filter(recipe => {
           return filterString
-              ? recipe.recipeName.toLowerCase().includes(filterString.toLowerCase())
+              ? recipe.filterMatchString.toLowerCase().includes(filterString.toLowerCase())
               : true;
         })
         .map((recipe, index) => this.mapRecipeToRow(recipe, index))

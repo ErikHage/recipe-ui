@@ -16,6 +16,7 @@
     "selected": {
       "recipeId": "unique id for the recipe",
       "name": "String",
+      "filterMatchString": "String",
       "prep": {
         "kind": "String",
         "value": "Number"
