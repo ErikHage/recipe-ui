@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import RecipeHeader from './RecipeHeader';
 import IngredientsSection from './IngredientsSection';
 import StepsSection from './StepsSection';
 import RecipeStats from './RecipeStats';
 import NutritionSection from './NutritionSection';
-import PropTypes from 'prop-types';
-import {bindActionCreators} from 'redux';
+import LoadingScreen from '../loading/LoadingScreen';
+
 import * as recipeActions from '../../actions/recipe-actions';
 
 class Recipe extends Component {
@@ -50,6 +52,15 @@ class Recipe extends Component {
   }
 
   render() {
+    if (this.props.isLoading) {
+      return (
+          <div className="recipe-content">
+            { this.renderListToggleButton() }
+            <LoadingScreen message="Recipe cache refreshing..." />
+          </div>
+      );
+    }
+
     if (this.props.recipe) {
       const recipe = this.props.recipe;
 
@@ -61,12 +72,14 @@ class Recipe extends Component {
 }
 
 Recipe.propTypes = {
-    sidebarCollapsed: PropTypes.bool.isRequired,
+  sidebarCollapsed: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     sidebarCollapsed: state.recipes.sidebarCollapsed,
+    isLoading: state.recipes.isLoading,
     recipe: state.recipes.selected,
   };
 }

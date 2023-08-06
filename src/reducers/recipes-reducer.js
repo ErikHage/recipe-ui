@@ -1,6 +1,7 @@
 import * as actions from '../actions/action-types';
 
 const initialState = {
+  isLoading: true,
   sidebarCollapsed: false,
   files: [],
   recipeCache: {},
@@ -48,13 +49,15 @@ export default function recipesReducer(state = initialState, action) {
       return Object.assign({}, state, {
         files: action.recipes,
         message: undefined,
+        isLoading: false,
       });
     case actions.LOAD_RECIPES_ERROR:
       return Object.assign({}, state, {
         files: [],
         message: action.error.message,
+        isLoading: false,
       });
-    default: 
+    default:
       return state;
   }
 }
