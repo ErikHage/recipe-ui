@@ -61,6 +61,7 @@ export function loadRecipes() {
   return async function (dispatch) {
     try {
       const recipes = await recipesService.getRecipes();
+      recipes.sort((a, b) => a.recipeName.localeCompare(b.recipeName));
       toastr.success('Recipes Loaded successfully!');
       return dispatch(loadRecipesSuccess(recipes));
     } catch (err) {
